@@ -1,5 +1,7 @@
 from math import sqrt, tan
 from numbers import Real
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 class Complex:
@@ -64,10 +66,44 @@ class Complex:
         else:
             print("Error.")
 
-    def expo(self):
+    def expo_write(self):
         print(self.module(), "e^(ĵ", self.argument(), ")")
 
-    def alg(self):
+    def alg_write(self):
         print(self.a, "+ i", self.b)
 
+    def trigo_write(self):
+        print(self.module(), "(cos(", self.argument(), ") + i*sin(", self.argument(), "))")
+
+    def trigonometric_circle_draw(self):
+        plt.figure()
+        ax = plt.gca()
+
+        ax.spines['left'].set_position('zero')
+        ax.spines['right'].set_color('none')
+        ax.spines['bottom'].set_position('zero')
+        ax.spines['top'].set_color('none')
+
+        plt.xlim(xlim)
+        plt.ylim(ylim)
+        plt.grid(True, linestyle='--')
+
+        plt.scatter(self.a, self.b, color='red', s=2)
+
+        plt.show()
+
+        # title and label the axes
+        plt.title("Some complex numbers")
+        plt.xlabel("Real")
+        plt.ylabel("Img")
+
+        plt.show()
+
     __deepcopy__ = __copy__  # copy all the attribute
+
+
+if __name__ == '__main__':
+    a = 1
+    b = 2
+    z = Complex(a, b)
+
